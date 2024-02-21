@@ -8,7 +8,7 @@ const authRouter = require("./routes/auth");
 require("dotenv").config();
 AmazonDB_Uri = process.env.MONGODB_URI;
 
-const PORT = /* process.env.PORT ||  */ 3000;
+const PORT = process.env.PORT || 3000;
 const app = express();
 const DB = AmazonDB_Uri;
 
