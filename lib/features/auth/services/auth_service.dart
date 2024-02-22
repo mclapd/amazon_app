@@ -32,8 +32,7 @@ class AuthService {
       );
 
       http.Response res = await http.post(
-        // Uri.parse('$uri/api/signup'),
-        Uri.parse('http://10.0.2.2:3000/api/signup'),
+        Uri.parse('$uri/api/signup'),
         body: user.toJson(),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -63,8 +62,7 @@ class AuthService {
   }) async {
     try {
       http.Response res = await http.post(
-        // Uri.parse('$uri/api/signin'),
-        Uri.parse('http://10.0.2.2:3000/api/signin'),
+        Uri.parse('$uri/api/signin'),
         body: jsonEncode({
           'email': email,
           'password': password,
@@ -106,8 +104,7 @@ class AuthService {
       }
 
       var tokenRes = await http.post(
-        // Uri.parse('$uri/tokenIsValid'),
-        Uri.parse('http://10.0.2.2:3000/tokenIsValid'),
+        Uri.parse('$uri/tokenIsValid'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'x-auth-token': token!
@@ -118,8 +115,7 @@ class AuthService {
 
       if (response == true) {
         http.Response userRes = await http.get(
-          // Uri.parse('$uri/'),
-          Uri.parse('http://10.0.2.2:3000/'),
+          Uri.parse('$uri/'),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
             'x-auth-token': token
