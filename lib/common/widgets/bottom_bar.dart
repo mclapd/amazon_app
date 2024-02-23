@@ -1,7 +1,6 @@
 import 'package:amazon_clone_tutorial/constants/global_variables.dart';
 import 'package:amazon_clone_tutorial/features/account/screens/account_screen.dart';
-import 'package:amazon_clone_tutorial/features/account/screens/account_screen.dart';
-// import 'package:amazon_clone_tutorial/features/cart/screens/cart_screen.dart';
+import 'package:amazon_clone_tutorial/features/cart/screens/cart_screen.dart';
 import 'package:amazon_clone_tutorial/features/home/screens/home_screen.dart';
 import 'package:amazon_clone_tutorial/providers/user_provider.dart';
 import 'package:badges/badges.dart' as badges;
@@ -26,9 +25,7 @@ class _BottomBarState extends State<BottomBar> {
   List<Widget> pages = [
     const HomeScreen(),
     const AccountScreen(),
-    const Center(
-      child: Text("Cart Page"),
-    )
+    const CartScreen(),
   ];
 
   void updatePage(int page) {
@@ -39,7 +36,7 @@ class _BottomBarState extends State<BottomBar> {
 
   @override
   Widget build(BuildContext context) {
-    // final userCartLen = context.watch<UserProvider>().user.cart.length;
+    final userCartLen = context.watch<UserProvider>().user.cart.length;
 
     return Scaffold(
       body: pages[_page],
@@ -107,8 +104,7 @@ class _BottomBarState extends State<BottomBar> {
               ),
               child: badges.Badge(
                 position: BadgePosition.topEnd(),
-                badgeContent: Text("2"),
-                // badgeContent: Text(userCartLen.toString()),
+                badgeContent: Text(userCartLen.toString()),
                 child: const Icon(
                   Icons.shopping_cart_outlined,
                 ),

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 
 import 'package:amazon_clone_tutorial/common/widgets/bottom_bar.dart';
@@ -12,6 +14,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
+  // sign up user
   void signUpUser({
     required BuildContext context,
     required String email,
@@ -27,7 +30,7 @@ class AuthService {
         address: '',
         type: '',
         token: '',
-        // cart: [],
+        cart: [],
       );
 
       http.Response res = await http.post(

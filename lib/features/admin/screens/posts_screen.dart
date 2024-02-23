@@ -2,7 +2,6 @@ import 'package:amazon_clone_tutorial/constants/global_variables.dart';
 import 'package:amazon_clone_tutorial/common/widgets/loader.dart';
 import 'package:amazon_clone_tutorial/features/account/widgets/single_product.dart';
 import 'package:amazon_clone_tutorial/features/admin/screens/add_product_screen.dart';
-// import 'package:amazon_clone_tutorial/features/admin/screens/add_product_screen.dart';
 import 'package:amazon_clone_tutorial/features/admin/services/admin_services.dart';
 import 'package:amazon_clone_tutorial/models/product.dart';
 import 'package:flutter/material.dart';
@@ -46,51 +45,53 @@ class _PostsScreenState extends State<PostsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GridView.builder(
-        itemCount: 4,
-        gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemBuilder: (context, index) {
-          // final productData = products![index];
-          return Column(
-            children: [
-              SizedBox(
-                height: 140,
-                child: SingleProduct(
-                  image:
-                      "https://images.unsplash.com/photo-1707343845208-a20c56d2c8ba?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyNnx8fGVufDB8fHx8fA%3D%3D",
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                    child: Text(
-                      "Product Name",
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
+    return products == null
+        ? const Loader()
+        : Scaffold(
+            body: GridView.builder(
+              itemCount: products!.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2),
+              itemBuilder: (context, index) {
+                final productData = products![index];
+                return Column(
+                  children: [
+                    SizedBox(
+                      height: 140,
+                      child: SingleProduct(
+                        image: productData.images[0],
+                      ),
                     ),
-                  ),
-                  IconButton(
-                    onPressed: () => {},
-                    icon: const Icon(
-                      Icons.delete_outline,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            productData.name,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () => deleteProduct(productData, index),
+                          icon: const Icon(
+                            Icons.delete_outline,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                );
+              },
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: navigateToAddProduct,
+              tooltip: 'Add a Product',
+              backgroundColor: GlobalVariables.selectedNavBarColor,
+              child: const Icon(Icons.add),
+            ),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerFloat,
           );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: navigateToAddProduct,
-        tooltip: 'Add a Product',
-        backgroundColor: GlobalVariables.selectedNavBarColor,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-    );
   }
 }
