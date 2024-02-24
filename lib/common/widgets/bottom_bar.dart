@@ -103,8 +103,18 @@ class _BottomBarState extends State<BottomBar> {
                 ),
               ),
               child: badges.Badge(
-                position: BadgePosition.topEnd(),
+                showBadge: true,
+                ignorePointer: false,
+                position: badges.BadgePosition.topEnd(),
                 badgeContent: Text(userCartLen.toString()),
+                badgeStyle: const badges.BadgeStyle(
+                  // shape: badges.BadgeShape.square,
+                  badgeColor: Colors.white,
+                  // padding: const EdgeInsets.all(5),
+                  // borderRadius: BorderRadius.circular(4),
+                  // borderSide: const BorderSide(color: Colors.white, width: 2),
+                  elevation: 0,
+                ),
                 child: const Icon(
                   Icons.shopping_cart_outlined,
                 ),

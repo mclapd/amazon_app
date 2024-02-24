@@ -27,7 +27,7 @@ class AdminServices {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     try {
-      final cloudinary = CloudinaryPublic('denfgaxvg', 'uszbstnu');
+      final cloudinary = CloudinaryPublic('de0shfirh', 'sfugjhrp');
       List<String> imageUrls = [];
 
       for (int i = 0; i < images.length; i++) {
